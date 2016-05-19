@@ -1,42 +1,75 @@
+Техническое задание
 
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+Проект представляет собой сервис ответов на вопросы.
+Пользователь сервиса имеет возможность зарегистрироваться, задать вопрос, 
+ответить на вопросы других пользователей. Так же пользователь может отметить 
+вопросы с помощь кнопки "лайк", изменяя их рейтинг. В качестве прототипа образца
+можно использовать http://stackoverflow.com/
 
+Основные сущности проекта
 
-Welcome to your Django project on Cloud9 IDE!
+    Пользователь - email, имя, пароль, аватарка
+    Вопрос - заголовок, текст, автор, рейтинг вопроса
+    Ответ - текст, вопрос, автор, флаг "правильности"
+    Лайк - вопрос, пользователь
 
-Your Django project is already fully setup. Just click the "Run" button to start
-the application. On first run you will be asked to create an admin user. You can
-access your application from 'https://ask-harstvic.c9users.io/' and the admin page from 
-'https://ask-harstvic.c9users.io/admin'.
+Формы и страницы проекта
 
-## Starting from the Terminal
+Главная страница
 
-In case you want to run your Django application from the terminal just run:
+URL:  /
 
-1) Run syncdb command to sync models to database and create Django's default superuser and auth system
+Назначение: представляет из себя список "популярных" вопросов. В списке 
+выводятся вопросы за последнюю неделю в порядке убывания рейтинга.
 
-    $ python manage.py migrate
+Список новых вопросов
 
-2) Run Django
+URL: /new/
 
-    $ python manage.py runserver $IP:$PORT
-    
-## Configuration
+Назначение: список вопросов по дате их добавления начиная с самого свежего.
 
-You can configure your Python version and `PYTHONPATH` used in
-Cloud9 > Preferences > Project Settings > Language Support.
+Страница одного вопроса
 
-## Support & Documentation
+URL: /question/123/
 
-Django docs can be found at https://www.djangoproject.com/
+Назначение: на этой странице можно прочитать текст вопрос и список ответов к 
+нему. Авторизованные пользователи могут добавить свой ответ.
 
-You may also want to follow the Django tutorial to create your first application:
-https://docs.djangoproject.com/en/1.9/intro/tutorial01/
+Страница регистрации
 
-Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE.
-To watch some training videos, visit http://www.youtube.com/user/c9ide
+URL: /signup/
+
+Назначение: пользователь может ввести свой email, пароль, имя, выбрать аватарку 
+и зарегистрироваться в проекте
+
+Страница авторизации
+
+URL: /login/
+
+Назначение: пользователь может ввести email и пароль и авторизоваться (войти) в 
+проекте.
+
+Страница добавления вопроса
+
+URL: /ask/
+
+Назначение: авторизованный пользователь может задать вопрос, после чего перейдет
+на страницу этого вопроса.
+Примерный дизайн
+https://lh3.googleusercontent.com/wU0kbS1H3KCYdMLmu2Bdzj-AU6sU4WnXFoco_A6WkEqPDKEVrl_4-oP6lu42amEHYnoMCxqf3TsUTnat4zH26vd7KCEf0T0HUbLf5Z24yxLcGqDApIUd9-u243d_n-qMyw=s1600
+https://lh5.googleusercontent.com/pcnQwpaJAkN8j3ExRYmXFJ1ys6APbysuIukYSX_kW0XH3hb1q3LfIPj2OX-az7ezI5LUDRLD0WefyTaRAg_N51oU0oQiuYZC1s5iUEf-yyN3ndFyhOprQ3uhO9k8voBx=s1600
+https://lh5.googleusercontent.com/Uy3iPZqCEiHa4aPpYWyYvm_j-Lnxfo_wIcwRkwLqn1HkKHWHWes3YP-OEGp434CTnzOTUwrDopWBZpjhVFKfRjhE3XEeoy77LuaK1Z8ftIwifIMt0MjoJkOlBLHr5-qU=s1600
+https://lh6.googleusercontent.com/cy-2YNTpUUD7cPQZOQfP8MFSPsUzhWa8SJfSv9ly1tcIakC-IIlZ-PX_ShWJifu2bmLwis8WLx9J65Grazz3AEZciMaLDOp916uLNjdmmv8aiUGjsQPlpgAkSeJ9SqGh=s1600
+
+AJAX запросы
+
+URL: /like/123/
+
+Назначение: пользователь может нажать кнопку "Лайк" у вопроса и это увеличит 
+рейтинг вопроса. 
+Пользователь может ставить "лайк" не более  1 раза для 1 вопроса.
+
+Clone
+
+git clone https://github.com/harstvic/ask.git ask
+
